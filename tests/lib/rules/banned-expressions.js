@@ -16,12 +16,30 @@ const settings = {
   ],
 };
 
+const invalidSettings = {
+  bannedExpressions: [
+    {
+      value: ".forEach",
+      suggestion: "use map instead of forEach",
+    },
+    {
+      value: "Date",
+      suggestion: "use map instead of forEach",
+    },
+    {
+      value: "Date",
+      exp: "new Date((.{0,}))",
+    },
+  ],
+};
+
 const parserOptions = {
   ecmaVersion: 2015,
 };
 
 const ruleTester = new RuleTester({ settings, parserOptions });
 const ruleTesterNoBannedExpression = new RuleTester({ parserOptions });
+const ruleTesterInvalidExpression = new RuleTester({ parserOptions });
 
 ruleTester.run("no-banned-expressions-check", rule, {
   valid: [
@@ -51,7 +69,19 @@ ruleTester.run("no-banned-expressions-check", rule, {
   ],
 });
 
-ruleTesterNoBannedExpression.run("banned-expressions-check", rule, {
+ruleTesterNoBannedExpression.run("no-banned-expressions-check", rule, {
+  valid: [
+    {
+      code: "new Date()",
+    },
+    {
+      code: "array.forEach",
+    },
+  ],
+  invalid: [],
+});
+
+ruleTesterInvalidExpression.run("banned-invalid-expressions-check", rule, {
   valid: [
     {
       code: "new Date()",
