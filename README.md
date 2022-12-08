@@ -41,10 +41,10 @@ You should define your banned expressions (and their suggestions) under settings
 
 ```json
 {
-  "settings": {
-      "bannedExpressions": [
-        { "value": ".forEach", exp: "new Date((.{0,}))", "suggestion": "use .map" },
-        { "value": "new Date", exp: "new Date((.{0,}))", "suggestion": "use Temporal" },
-    ],
-  }
+    "settings": {
+        "bannedExpressions": [
+            { "value": ".forEach", "exp": ".forEach((.{0,}))", "suggestion": "use .map" },
+            { "value": "new Date", "exp": "new Date((.{0,}))", "suggestion": "use Temporal" },
+        ],
+    }
 }
