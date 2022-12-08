@@ -22,9 +22,7 @@ Add `banned-expressions` to the plugins section of your `.eslintrc` configuratio
 
 ```json
 {
-    "plugins": [
-        "banned-expressions"
-    ]
+    "plugins": ["banned-expressions"]
 }
 ```
 
@@ -34,13 +32,19 @@ Then configure the rules you want to use under the rules section.
 ```json
 {
     "rules": {
-        "banned-expressions/rule-name": 2
+        "banned-expressions/banned-expressions": "error"
     }
 }
 ```
 
-## Supported Rules
+You should define your banned expressions (and their suggestions) under settings section.
 
-* Fill in provided rules here
-
-
+```json
+{
+  "settings": {
+      "bannedExpressions": [
+        { "value": ".forEach", exp: "new Date((.{0,}))", "suggestion": "use .map" },
+        { "value": "new Date", exp: "new Date((.{0,}))", "suggestion": "use Temporal" },
+    ],
+  }
+}

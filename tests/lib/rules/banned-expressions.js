@@ -5,7 +5,7 @@ const settings = {
   bannedExpressions: [
     {
       value: ".forEach",
-      exp: ".forEach",
+      exp: ".forEach((.{0,}))",
       suggestion: "use map instead of forEach",
     },
     {
@@ -39,7 +39,7 @@ const parserOptions = {
 
 const ruleTester = new RuleTester({ settings, parserOptions });
 const ruleTesterNoBannedExpression = new RuleTester({ parserOptions });
-const ruleTesterInvalidExpression = new RuleTester({ parserOptions });
+const ruleTesterInvalidExpression = new RuleTester({ settings: invalidSettings, parserOptions });
 
 ruleTester.run("no-banned-expressions-check", rule, {
   valid: [
