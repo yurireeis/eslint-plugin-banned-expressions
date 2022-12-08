@@ -17,11 +17,11 @@ const settings = {
 };
 
 const parserOptions = {
-  ecmaVersion: 2015
+  ecmaVersion: 2015,
 };
 
 const ruleTester = new RuleTester({ settings, parserOptions });
-// const ruleTesterNoBannedExpression = new RuleTester();
+const ruleTesterNoBannedExpression = new RuleTester({ parserOptions });
 
 ruleTester.run("no-banned-expressions-check", rule, {
   valid: [
@@ -51,14 +51,14 @@ ruleTester.run("no-banned-expressions-check", rule, {
   ],
 });
 
-// ruleTesterNoBannedExpression.run("banned-expressions-check", rule, {
-//   valid: [
-//     {
-//       code: "try { foo() } catch (e) { bar() }",
-//     },
-//     {
-//       code: "try { foo() } catch (e) {}",
-//     },
-//   ],
-//   invalid: [],
-// });
+ruleTesterNoBannedExpression.run("banned-expressions-check", rule, {
+  valid: [
+    {
+      code: "new Date()",
+    },
+    {
+      code: "array.forEach",
+    },
+  ],
+  invalid: [],
+});
