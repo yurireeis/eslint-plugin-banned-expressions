@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-banned-expressions",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Set your regex expression to ban some undesired keyword and give a suggestion to replace",
   "keywords": [
     "eslint",
